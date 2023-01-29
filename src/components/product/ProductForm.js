@@ -2,10 +2,11 @@ import { Button, FormControl } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../application";
-import { saveProduct, useSelectedProduct } from "../../redux";
+import { saveProduct, setSelectedProduct, useSelectedProduct } from "../../redux";
 import { TextFieldComponent } from "../shared";
 import FileBase from "react-file-base64";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { clearSelectedProduct } from "../../redux/slices/productSlice";
 
 const generateAddProductFormValues = (selectedProduct) => {
   return {
@@ -85,9 +86,10 @@ const ProductForm = () => {
     )
       .unwrap()
       .then(() => {
+        dispatch(clearSelectedProduct())
         navigate("/");
       });
-  };
+    };
 
   useEffect(() => {
     if (selectedProduct) {

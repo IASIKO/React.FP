@@ -77,6 +77,9 @@ const productSlice = createSlice({
     setSearchResults: (state) => {
       state.searchResults = [];
     },
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(saveProduct.pending, (state) => {
@@ -139,6 +142,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { setSelectedProduct, setSearchResults } = productSlice.actions;
+export const { setSelectedProduct, setSearchResults, clearSelectedProduct } = productSlice.actions;
 
 export const productReducer = productSlice.reducer;
